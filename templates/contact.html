@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% set title='Contact' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+<h1 class="lineUp">צרו קשר</h1>
+    </header>
+    <div>
+        <hr />
+        <p id="intro-para">אנא מלאו את הפרטים הבאים, ונמצא עבורכם את החופשה החלומית</p>
+    </div>
+    <div id="contact-div">
+        <form id="contact-form" method="get" action="#" onsubmit="validateMyForm();">
+            <label for="FName">שם פרטי</label> <br>
+            <input type="text" id="FName" name="FName" minlength="2" required><br>
+            <label for="LName">שם משפחה</label><br>
+            <input type="text" id="LName" name="LName" minlength="2" required><br>
+            <label for="email">אימייל</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="price">טווח מחירים</label><br>
+            <select class="select-price" name="price">
+                <option value="100-299">500-1000</option>
+                <option value="300-599">1000-2000</option>
+                <option value="600-1000">2000-3000</option>
+            </select><br>
+            <label for="num">מספר נפשות</label><br>
+            <input type="number" id="num" name="num" min="1" value="2"><br>
+            <label for="agree">אני מאשר לקבל הודעות מאתר החיים הטובים</label> <br>
+            <input type="checkbox" id="agree" name="agree" required><br>
+            <input type="submit">
+            <!-- <button id="submit-button" onClick="submitMessage()"> submit </button> -->
+        </form>
+    </div>
+    <div id="submit-place-holder">
+    </div>
+    <footer class="footer footer2">
+        <div id="phone">
+            <label>052-3456789</label>
+        </div>
+        <span>goodlife@gmail.com</span>
+        <div id="logos">
+            <img class="logo" src="../static/insta-logo.png" />
+            <img class="logo" src="../static/twiter-logo.png" />
+            <img class="logo" src="../static/facebook-logo.png" />
+        </div>
+    </footer>
+{% endblock %}
+{% block script %}
+  {{ super() }}
+{% endblock %}

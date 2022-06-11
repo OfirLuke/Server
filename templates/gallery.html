@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% set title='Gallery' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+    <h1 class="lineUp">גלריה</h1>
+    <hr id="hr">
+    <div id="container">
+        <img class="img1 img-size" src="../static/img1.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img2 img-size" src="../static/img2.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img3 img-size" src="../static/img3.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img4 img-size" src="../static/img4.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img5 img-size" src="../static/img5.jpeg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img6 img-size" src="../static/img6.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img7 img-size" src="../static/img7.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img8 img-size" src="../static/img8.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+        <img class="img9 img-size" src="../static/img9.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
+    </div>
+    <footer class="footer footer2">
+        <div id="phone">
+            <label>052-3456789</label>
+        </div>
+        <span>goodlife@gmail.com</span>
+        <div id="logos">
+            <img class="logo" src="../static/insta-logo.png" />
+            <img class="logo" src="../static/twiter-logo.png" />
+            <img class="logo" src="../static/facebook-logo.png" />
+        </div>
+    </footer>
+{% endblock %}
+{% block script %}
+  {{ super() }}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% set title='Forms' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <form class="search" method="get">
+        <label id="search" for="search">חפש</label>
+        <input type="text" name="search">
+        <label id="submit" name="submit">Submit</label>
+        <input type="submit">
+    </form>
+
+    <form class="registration" method="post">
+
+    </form>
+
+<!--    {% if current_users %}-->
+<!--    <h3>-->
+<!--        {{ current_users.name }} {{current_users.email}}-->
+<!--    </h3>-->
+<!--    {% else %}-->
+<!--    <h3>-->
+<!--        User is not exist!-->
+<!--    </h3>-->
+<!--    {% endif %}-->
+
+    {% for user, data in current_users.items(): %}
+        <h3>User Name: {{data.name }}, Email: {{data.email}}</h3>
+    {% endfor %}
+
+{% endblock %}
+{% block script %}
+  {{ super() }}
+{% endblock %}

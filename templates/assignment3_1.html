@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% set title='My Vacations' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+<div>
+    {% if user and user.fName and user.lName %}
+    <h3>
+        Hello {{ user.fName }} {{user.lName}}
+    </h3>
+    {% else %}
+    <h3>
+        Hello Stranger!
+    </h3>
+    {% endif %}
+
+    {{
+        destinations | default('') | join(' | ')
+    }}
+
+    {% if flags %}
+        <h3>
+            Top destinations flags:
+        </h3>
+        <div class="flags-row">
+        {% for flag in flags: %}
+            <img class="flags-img" src={{flag}}>
+        {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block script %}
+  {{ super() }}
+{% endblock %}

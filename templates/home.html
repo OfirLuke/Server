@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% set title='Home' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+<h1 class="lineUp">ברוכים הבאים לאתר החיים הטובים</h1>
+<hr id="hr">
+<img id="main-photo" onmouseover="onHover();" onmouseout="offHover();" src="../static/goodlife.jpg" alt="">
+<p id = "relax-p">צריכים מנוחה מהלימודים?<br>
+    הגעתם למקום הנכון
+</p>
+<footer class="footer">
+    <div id="phone">
+        <label>052-3456789</label>
+    </div>
+    <span>goodlife@gmail.com</span>
+    <div id="logos">
+        <img class="logo" src="../static/insta-logo.png" />
+        <img class="logo" src="../static/twiter-logo.png" />
+        <img class="logo" src="../static/facebook-logo.png" />
+    </div>
+</footer>
+{% endblock %}
+{% block script %}
+  {{ super() }}
+{% endblock %}
