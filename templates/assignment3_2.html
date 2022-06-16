@@ -5,30 +5,52 @@
 {% endblock %}
 
 {% block content %}
-    <form class="search" method="get">
-        <label id="search" for="search">חפש</label>
-        <input type="text" name="search">
-        <label id="submit" name="submit">Submit</label>
-        <input type="submit">
+<div class="form-style">
+      <form class="search" action="#" method="get">
+        <label id="search" for="search">חפש:</label> <br>
+        <input id="search" type="text" name="search"> <br>
+<!--        <label id="submit" name="submit">Submit</label>-->
+        <input class="button" type="submit">
     </form>
+</div>
 
-    <form class="registration" method="post">
-
-    </form>
-
-<!--    {% if current_users %}-->
-<!--    <h3>-->
-<!--        {{ current_users.name }} {{current_users.email}}-->
-<!--    </h3>-->
-<!--    {% else %}-->
-<!--    <h3>-->
-<!--        User is not exist!-->
-<!--    </h3>-->
-<!--    {% endif %}-->
 
     {% for user, data in current_users.items(): %}
-        <h3>User Name: {{data.name }}, Email: {{data.email}}</h3>
+        <h3><span class="user_details">User Name:</span>  {{data.name }}, <span class="user_details">Email:</span> {{data.email}}</h3>
     {% endfor %}
+
+    {% if session.logedin %}
+    <h3>
+        {{ session.username}}
+        <form class="logout" action="/log_out" method="post">
+            <input type="submit" value="התנתק"/>
+        </form>
+    </h3>
+    {% else %}
+<div class="form-style">
+     <form class="registration" action="" method="post">
+         <h3 id="reg">רישום לאתר:</h3>
+        <label for="userName">שם משתמש:</label> <br>
+        <input type="text"  id="userName" name="userName" required><br>
+        <label for="password">סיסמה:</label> <br>
+        <input type="text" id="password" name="password" required><br>
+        <input class="button" type="submit">
+    </form>
+</div>
+
+    {% endif %}
+
+    <footer class="footer footerAss">
+        <div id="phone">
+            <label>052-3456789</label>
+        </div>
+        <span>goodlife@gmail.com</span>
+        <div id="logos">
+            <img class="logo" src="../static/insta-logo.png" />
+            <img class="logo" src="../static/twiter-logo.png" />
+            <img class="logo" src="../static/facebook-logo.png" />
+        </div>
+    </footer>
 
 {% endblock %}
 {% block script %}

@@ -1,6 +1,11 @@
-from flask import Flask, redirect, render_template, url_for, request
+from flask import Flask, redirect, render_template, url_for, request, session
 app = Flask(__name__)
 from forms_data import users
+
+app.secret_key = '123'
+app.config['SESSION_PERMANENT'] = True
+# app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=20)
+
 
 @app.route('/')
 def main_page():
@@ -25,28 +30,67 @@ def contact_us_page():
 @app.route('/assignment3_1')
 def assignment3_1_page():
     return render_template('assignment3_1.html',
-                           # hobbies={
-                           #     'fName': 'Ofir',
-                           #     'lName': 'Luke',
-                           # },
                            user={'fName': 'Ofir', 'lName': 'Luke'},
-                           destinations=['Argentina', 'Brazil', 'Peru', 'Zanzibar', 'Mexico'],
+                           # destinations=['Argentina', 'Brazil', 'Peru', 'Zanzibar', 'Mexico'],
+                           destinations=['ארגנטינה', 'ברזיל', 'פרו', 'זנזיבר', 'מקסיקו'],
                            flags=['./static/argentinaFlag.png', './static/brzilFlag.png', './static/peruFlag.png', './static/zanzibarFlag.png', './static/mexicoFlag.png']
                            )
 
 @app.route('/assignment3_2', methods=['GET', 'POST'])
 def assignment3_2_page():
-    current_users = []
+    current_users = {}
+    registration_data = {}
+
     if 'search' in request.args:
         search_data = request.args['search']
         if search_data == '':
             current_users = users
-        # else:
-        #     for user in users:
-        #         if search_data == user.name or search_data == user.email:
-        #             current_users.append(user)
+        else:
+            for user, data in users.items():
+                if search_data == data["name"] or search_data == data["email"]:
+                    current_users.update({
+                        user: users[user]
+                    })
 
-    return render_template('assignment3_2.html', current_users=current_users)
+    if request.method == 'POST' and len(request.form) > 0:
+        user_name = request.form['userName']
+        user_pass = request.form['password']
+        session['username'] = user_name
+        session['logedin'] = True
+
+        registration_data.update({
+            'message': '!Thanks ' + user_name + ' for your registration'
+        })
+
+    return render_template('assignment3_2.html', current_users=current_users, registration_data=registration_data)
+
+@app.route('/log_out', methods=['GET', 'POST'])
+def logout_func():
+    print(1)
+    session['logedin'] = False
+    session.clear()
+    return redirect('/assignment3_2')
+
+# @app.route('assignment3_2/log_in', methods=['GET', 'POST'])
+# def login_func():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+#         if username in user_dict:
+#             pas_in_dict = user_dict[username]
+#             if pas_in_dict == password:
+#                 session['username'] = username
+#                 session['logedin'] = True
+#                 return render_template('log_in.html',
+#                                        message='Success',
+#                                        username=username)
+#             else:
+#                 return render_template('log_in.html',
+#                                        message='Wrong password!')
+#         else:
+#             return render_template('log_in.html',
+#                                    message='Please sign in!')
+#     return render_template('log_in.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

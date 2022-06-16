@@ -5,6 +5,11 @@
 {% endblock %}
 {% block content %}
 <h1 class="lineUp">צרו קשר</h1>
+    {% if session.logedin %}
+    <h3>
+        {{ session.username}}
+    </h3>
+    {% endif %}
     </header>
     <div>
         <hr />

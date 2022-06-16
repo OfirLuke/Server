@@ -75,6 +75,10 @@ a:hover {
     padding-top: 110px;
 }
 
+.footerAss {
+    padding-top: 300px;
+}
+
 .logo {
     width: 40px;
     height: 40px;
@@ -128,6 +132,48 @@ a:hover {
 .flags-img {
     width: 200px;
     height: 100px;
+}
+
+.user_details{
+  text-decoration: underline;
+    color: #5b5b5b;
+}
+
+#flag{
+    padding-top: 50px;
+}
+
+.search{
+    align-items: center;
+    margin-top: 30px;
+    border: 1px solid #5b5b5b;
+    width: 100%;
+}
+
+#search{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.button{
+    margin: 10px;
+}
+
+.form-style{
+    width: 400px;
+    margin: 0 auto;
+}
+
+.registration{
+    align-items: center;
+    margin-top: 30px;
+    border: 1px solid #5b5b5b;
+    width: 100%;
+}
+
+#reg{
+    font-size: larger;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 1250px){

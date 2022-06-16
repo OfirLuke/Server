@@ -5,6 +5,11 @@
 {% endblock %}
 {% block content %}
 <h1 class="lineUp">ברוכים הבאים לאתר החיים הטובים</h1>
+    {% if session.logedin %}
+    <h3>
+        {{ session.username}}
+    </h3>
+    {% endif %}
 <hr id="hr">
 <img id="main-photo" onmouseover="onHover();" onmouseout="offHover();" src="../static/goodlife.jpg" alt="">
 <p id = "relax-p">צריכים מנוחה מהלימודים?<br>

@@ -5,6 +5,11 @@
 {% endblock %}
 {% block content %}
     <h1 class="lineUp">גלריה</h1>
+    {% if session.logedin %}
+    <h3>
+        {{ session.username}}
+    </h3>
+    {% endif %}
     <hr id="hr">
     <div id="container">
         <img class="img1 img-size" src="../static/img1.jpg" alt="" onmouseover="setImgBorderOnHover(this)" onmouseout="setImgBorderOffHover(this)">
