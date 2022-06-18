@@ -79,26 +79,5 @@ def logout_func():
     session.clear()
     return redirect('/assignment3_2')
 
-# @app.route('assignment3_2/log_in', methods=['GET', 'POST'])
-# def login_func():
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']
-#         if username in user_dict:
-#             pas_in_dict = user_dict[username]
-#             if pas_in_dict == password:
-#                 session['username'] = username
-#                 session['logedin'] = True
-#                 return render_template('log_in.html',
-#                                        message='Success',
-#                                        username=username)
-#             else:
-#                 return render_template('log_in.html',
-#                                        message='Wrong password!')
-#         else:
-#             return render_template('log_in.html',
-#                                    message='Please sign in!')
-#     return render_template('log_in.html')
-
 if __name__ == '__main__':
     app.run(debug=True)
