@@ -31,7 +31,6 @@ def contact_us_page():
 def assignment3_1_page():
     return render_template('assignment3_1.html',
                            user={'fName': 'Ofir', 'lName': 'Luke'},
-                           # destinations=['Argentina', 'Brazil', 'Peru', 'Zanzibar', 'Mexico'],
                            destinations=['ארגנטינה', 'ברזיל', 'פרו', 'זנזיבר', 'מקסיקו'],
                            flags=['./static/argentinaFlag.png', './static/brzilFlag.png', './static/peruFlag.png', './static/zanzibarFlag.png', './static/mexicoFlag.png']
                            )
@@ -54,13 +53,21 @@ def assignment3_2_page():
 
     if request.method == 'POST' and len(request.form) > 0:
         user_name = request.form['userName']
-        user_pass = request.form['password']
+        user_email = request.form['email']
         session['username'] = user_name
         session['logedin'] = True
 
-        registration_data.update({
-            'message': '!Thanks ' + user_name + ' for your registration'
+        num_of_users = len(users) + 1
+        new_user_key = 'user{user_number}'.format(user_number=num_of_users)
+
+        users.update({
+            new_user_key: {
+                'name': user_name,
+                'email': user_email
+            }
         })
+
+        print(users)
 
     return render_template('assignment3_2.html', current_users=current_users, registration_data=registration_data)
 

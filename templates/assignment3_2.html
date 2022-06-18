@@ -21,7 +21,7 @@
 
     {% if session.logedin %}
     <h3>
-        {{ session.username}}
+        שלום {{ session.username}}
         <form class="logout" action="/log_out" method="post">
             <input type="submit" value="התנתק"/>
         </form>
@@ -32,8 +32,8 @@
          <h3 id="reg">רישום לאתר:</h3>
         <label for="userName">שם משתמש:</label> <br>
         <input type="text"  id="userName" name="userName" required><br>
-        <label for="password">סיסמה:</label> <br>
-        <input type="text" id="password" name="password" required><br>
+        <label for="email">אימייל:</label> <br>
+        <input type="email" id="email" name="email" required><br>
         <input class="button" type="submit">
     </form>
 </div>
