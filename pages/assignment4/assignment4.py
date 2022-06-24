@@ -161,6 +161,10 @@ def outer_source_fetch_data():
     res = requests.get(f"https://reqres.in/api/users/{user_number}")
     return render_template('assignment4_outer_source.html', request_data=res.json()['data'])
 
+@assignment_4.route('/assignment4/outer_source/')
+def outer_source_redirect():
+    return
+
 @assignment_4.route('/assignment4/restapi_users')
 def restapi_users_without_id():
     return jsonify({
