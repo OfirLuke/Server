@@ -161,6 +161,44 @@ def outer_source_fetch_data():
     res = requests.get(f"https://reqres.in/api/users/{user_number}")
     return render_template('assignment4_outer_source.html', request_data=res.json()['data'])
 
+@assignment_4.route('/assignment4/restapi_users')
+def restapi_users_without_id():
+    return jsonify({
+        "id": 0,
+        "name": "Default",
+        "email": "Default@gmail.com",
+    })
+
+@assignment_4.route('/assignment4/restapi_users/<USER_ID>')
+def restapi_users(USER_ID):
+    query = 'select * from users'
+    users_list = interact_db(query, query_type='fetch')
+    user_exist = False
+    users_object = {}
+
+    if not USER_ID.isnumeric():
+        return jsonify({
+            "message": "Wrong user number!"
+        })
+
+    for row in users_list:
+        if(row.id == int(USER_ID)):
+            user_exist = True
+            users_object[row.id] = {
+                'id': row.id,
+                'name': row.name,
+                'email': row.email,
+            }
+
+    if not user_exist:
+        return jsonify({
+            "message": "This user is not exist!"
+        })
+
+    return jsonify(users_object)
+
+
+
 
 
 
