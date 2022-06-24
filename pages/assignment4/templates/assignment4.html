@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% set title='Users Forms' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href={{ url_for('static', filename='static/assignment4.css') }}>
+    <div class="form-style">
+        <form class="form-style-2" action="/insert_user" method="post">
+            <h3>הוספת משתמש:</h3>
+          <label id="user-id" for="user-id">תעודת זהות:</label> <br>
+          <input type="number" name="user-id" required> <br>
+          <label id="user-name" for="user-name">שם משתמש:</label> <br>
+          <input type="text" name="user-name" required> <br>
+          <label id="user-email" for="user-email">אימייל:</label> <br>
+          <input type="email" name="user-email" required> <br>
+          <input class="button" type="submit">
+        </form>
+    </div>
+
+    <h4>
+        {{
+            message_for_insert
+        }}
+    </h4>
+
+    <div class="form-style">
+        <form class="form-style-2" action="/delete_user" method="post">
+            <h3>מחיקת משתמש:</h3>
+            <label id="user-id-delete" for="user-id">הכנס תעודת זהות לצורך מחיקה:</label> <br>
+          <input type="number" name="user-id-delete" required> <br>
+          <input class="button" type="submit">
+      </form>
+    </div>
+    <h4>
+        {{
+            message_for_delete
+        }}
+    </h4>
+
+    <div class="form-style">
+        <form class="form-style-2" action="/update_user" method="post">
+            <h3>עדכון פרטי משתמש:</h3>
+          <label id="user-id-update" for="user-id-update">הכנס תעודת זהות לצורך עדכון פרטים:</label> <br>
+          <input type="number" name="user-id-update" required> <br>
+          <label id="user-name-update" for="user-name-update">שם משתמש מעודכן:</label> <br>
+          <input type="text" name="user-name-update"> <br>
+          <label id="user-email-update" for="user-email-update">אימייל מעודכן:</label> <br>
+          <input type="email" name="user-email-update"> <br>
+          <input class="button" type="submit">
+        </form>
+    </div>
+    <h4>
+        {{
+            message_for_user
+        }}
+    </h4>
+
+    <div class="form-style">
+        <form class="form-style-2" action="/select-users" method="get">
+            <h3>הצג משתמשים רשומים:</h3>
+            <input class="button" type="submit" value="לחץ כאן">
+        </form>
+    </div>
+
+    {% for user in users %}
+        <div class="container">
+            <h4><span class="user_details">שם משתמש:</span> {{ user.name }}, <span class="user_details">אימייל:</span>{{ user.email }}</h4>
+        </div>
+    {% endfor %}
+
+    <footer class="footer">
+        <div id="phone">
+            <label>052-3456789</label>
+        </div>
+        <span>goodlife@gmail.com</span>
+        <div id="logos">
+            <img class="logo" src="../static/insta-logo.png" />
+            <img class="logo" src="../static/twiter-logo.png" />
+            <img class="logo" src="../static/facebook-logo.png" />
+        </div>
+    </footer>
+{% endblock %}
+
+{% block script %}
+  {{ super() }}
+{% endblock %}

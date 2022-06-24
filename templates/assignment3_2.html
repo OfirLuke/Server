@@ -9,7 +9,6 @@
       <form class="search" action="#" method="get">
         <label id="search" for="search">חפש:</label> <br>
         <input id="search" type="text" name="search"> <br>
-<!--        <label id="submit" name="submit">Submit</label>-->
         <input class="button" type="submit">
     </form>
 </div>
@@ -27,18 +26,19 @@
         </form>
     </h3>
     {% else %}
-<div class="form-style">
-     <form class="registration" action="" method="post">
-         <h3 id="reg">רישום לאתר:</h3>
-        <label for="userName">שם משתמש:</label> <br>
-        <input type="text"  id="userName" name="userName" required><br>
-        <label for="email">אימייל:</label> <br>
-        <input type="email" id="email" name="email" required><br>
-        <input class="button" type="submit">
-    </form>
-</div>
-
+        <div class="form-style">
+             <form class="registration" action="" method="post">
+                 <h3 id="reg">רישום לאתר:</h3>
+                <label for="userName">שם משתמש:</label> <br>
+                <input type="text"  id="userName" name="userName" required><br>
+                <label for="email">אימייל:</label> <br>
+                <input type="email" id="email" name="email" required><br>
+                <input class="button" type="submit">
+            </form>
+        </div>
     {% endif %}
+
+    {{message}}
 
     <footer class="footer footerAss">
         <div id="phone">

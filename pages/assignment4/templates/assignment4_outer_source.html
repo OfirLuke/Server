@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% set title='Users Forms' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="form-style">
+        <form id="frontend-request" class="form-style-2" onsubmit="event.preventDefault()">
+            <h3>הכנס מספר משתמש:</h3>
+            <input id="user_number" type="number" name="user_number" required>
+            <button class="button" onclick="getUser()">לחץ כאן</button>
+        </form>
+    </div>
+
+    <div class="form-style">
+        <form id="backend-request" class="form-style-2" action="./outer_source/fetch_from_backend" method="get">
+            <h3>הכנס מספר משתמש לשליפה מהשרת:</h3>
+            <input id="user_number_2" type="number" name="user_number_2" required>
+            <input type="submit" class="button" value="לחץ כאן"/>
+        </form>
+    </div>
+
+    <div id="place_holder_for_response"></div>
+    <br>
+
+    {% if request_data %}
+        <h3> {{request_data.first_name}} {{request_data.last_name}} </h3>
+        <h4> {{request_data.email}} </h4>
+        <img src="{{request_data.avatar}}" alt="Profile Picture"/>
+    {% endif %}
+
+    <script>
+        const getUser = () => {
+            const formInputValue = document.getElementById("frontend-request").user_number.value;
+            fetch(` https://reqres.in/api/users/${formInputValue}`)
+                .then((response) => response.json())
+                .then((object) => {
+                    const data = object?.data;
+                    document.getElementById("place_holder_for_response").innerHTML =
+                        `
+                            <br>
+                            <h3>${data?.first_name} ${data?.last_name}</h3>
+                            <h4>${data?.email}</h4>
+                            <img src="${data?.avatar}" alt="Profile Picture"/>
+                        `
+                })
+                .catch((err) => console.log(err));
+        }
+    </script>
+{% endblock %}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="PY-221.5787.24">
-    <data-source name="@localhost" uuid="01bdef8e-6824-40ae-818b-78d45773fbd8">
+    <data-source name="@localhost" uuid="22c0d810-7662-49d8-a43c-29453dceaa4a">
       <database-info product="MySQL" version="8.0.29" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.29" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -11,7 +11,10 @@
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="@" />
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="myflaskappdb" />
+          </node>
         </introspection-scope>
       </schema-mapping>
     </data-source>

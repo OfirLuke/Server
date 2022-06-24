@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, url_for, request, session
+import mysql.connector
 
 app = Flask(__name__)
 from forms_data import users
@@ -39,7 +40,7 @@ def assignment3_1_page():
 @app.route('/assignment3_2', methods=['GET', 'POST'])
 def assignment3_2_page():
     current_users = {}
-    registration_data = {}
+    message = ''
 
     if 'search' in request.args:
         search_data = request.args['search']
@@ -55,22 +56,30 @@ def assignment3_2_page():
     if request.method == 'POST' and len(request.form) > 0:
         user_name = request.form['userName']
         user_email = request.form['email']
-        session['username'] = user_name
-        session['logedin'] = True
 
-        num_of_users = len(users) + 1
-        new_user_key = 'user{user_number}'.format(user_number=num_of_users)
+        user_registered = False
+        for user, data in users.items():
+            if user_email == data["email"]:
+                message = "אימייל זה כבר קיים במערכת!"
+                user_registered = True
+                break
 
-        users.update({
-            new_user_key: {
-                'name': user_name,
-                'email': user_email
-            }
-        })
+        if not user_registered:
+            session['username'] = user_name
+            session['logedin'] = True
+            message = 'משתמש נרשם בהצלחה!'
 
-        print(users)
+            num_of_users = len(users) + 1
+            new_user_key = 'user{user_number}'.format(user_number=num_of_users)
 
-    return render_template('assignment3_2.html', current_users=current_users, registration_data=registration_data)
+            users.update({
+                new_user_key: {
+                    'name': user_name,
+                    'email': user_email
+                }
+            })
+
+    return render_template('assignment3_2.html', current_users=current_users, message=message)
 
 @app.route('/log_out', methods=['GET', 'POST'])
 def logout_func():
@@ -78,6 +87,11 @@ def logout_func():
     session['logedin'] = False
     session.clear()
     return redirect('/assignment3_2')
+
+###### Pages
+## assignment4
+from pages.assignment4.assignment4 import assignment_4
+app.register_blueprint(assignment_4)
 
 if __name__ == '__main__':
     app.run(debug=True)
