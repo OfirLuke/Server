@@ -4,8 +4,11 @@
 {{ title }}
 {% endblock %}
 
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('assignment_4.static', filename='css/assignment4.css') }}"/>
+{% endblock %}
+
 {% block content %}
-    <link rel="stylesheet" href={{ url_for('static', filename='static/assignment4.css') }}>
     <div class="form-style">
         <form class="form-style-2" action="/insert_user" method="post">
             <h3>הוספת משתמש:</h3>

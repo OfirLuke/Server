@@ -4,6 +4,10 @@
 {{ title }}
 {% endblock %}
 
+{% block page_head_css %}
+    <link rel="stylesheet" href="{{ url_for('assignment_4.static', filename='css/assignment4.css') }}"/>
+{% endblock %}
+
 {% block content %}
     <div class="form-style">
         <form id="frontend-request" class="form-style-2" onsubmit="event.preventDefault()">
@@ -30,22 +34,8 @@
         <img src="{{request_data.avatar}}" alt="Profile Picture"/>
     {% endif %}
 
-    <script>
-        const getUser = () => {
-            const formInputValue = document.getElementById("frontend-request").user_number.value;
-            fetch(` https://reqres.in/api/users/${formInputValue}`)
-                .then((response) => response.json())
-                .then((object) => {
-                    const data = object?.data;
-                    document.getElementById("place_holder_for_response").innerHTML =
-                        `
-                            <br>
-                            <h3>${data?.first_name} ${data?.last_name}</h3>
-                            <h4>${data?.email}</h4>
-                            <img src="${data?.avatar}" alt="Profile Picture"/>
-                        `
-                })
-                .catch((err) => console.log(err));
-        }
-    </script>
+{% endblock %}
+
+{% block page_body_js %}
+    <script src="{{ url_for('assignment_4.static', filename='js/assignment4.js') }}"></script>
 {% endblock %}

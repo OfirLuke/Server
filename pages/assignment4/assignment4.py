@@ -3,7 +3,7 @@ import requests
 import mysql.connector
 
 # assignment4 blueprint definition
-assignment_4 = Blueprint('assignment_4', __name__, static_folder='', template_folder='templates')
+assignment_4 = Blueprint('assignment_4', __name__, static_folder='static', static_url_path='/assignment4', template_folder='templates')
 
 # Routes
 @assignment_4.route('/assignment4')

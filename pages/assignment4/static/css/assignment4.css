@@ -1,0 +1,13 @@
+#pinapple-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    float: right;
+}
+
+.form-style-2 {
+    align-items: center;
+    margin-top: 30px;
+    border: 1px solid #5b5b5b;
+    width: 100%;
+}
